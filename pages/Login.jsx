@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../api/auth.api";
+import toast from "react-hot-toast";
 
 function Login() {
 
@@ -36,9 +37,14 @@ function Login() {
         response.data.accessToken
       );
 
+
+       toast.success("Login successful");
       navigate("/dashboard");
 
     } catch (error) {
+        toast.error(
+  error.response?.data?.message || "Login failed"
+);
 
       console.log(error.response?.data);
 
